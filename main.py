@@ -19,7 +19,9 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
-while True:
+game_over = False
+
+while not game_over:
     screen.update()
     sleep(0.1)
     snake.move()
@@ -27,5 +29,11 @@ while True:
     # detect collision with food
     if snake.head.distance(food) < 15:
         food.refresh()
+        scoreboard.update_score()
+    
+    # detect collision with wall
+    if abs(snake.head.xcor()) >= 280 or abs(snake.head.ycor()) >= 280:
+        scoreboard.game_over()
+        game_over = True
 
 screen.exitonclick()
