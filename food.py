@@ -2,7 +2,8 @@ from turtle import Turtle
 from random import randint
 
 class Food(Turtle):
-    def __init__(self) -> None:
+    def __init__(self, xrange, yrange) -> None:
+        self.xrange, self.yrange = xrange//2 - 10, yrange//2 - 10
         Turtle.__init__(self)
         self.shape("circle")
         self.penup()
@@ -12,5 +13,5 @@ class Food(Turtle):
         self.refresh()
     
     def refresh(self):
-        self.loc = (randint(-280, 280), randint(-280, 280))
+        self.loc = (randint(-self.xrange, self.xrange), randint(-self.yrange, self.yrange))
         self.goto(self.loc)
