@@ -36,5 +36,10 @@ while not game_over:
     if abs(snake.head.xcor()) >= 280 or abs(snake.head.ycor()) >= 280:
         scoreboard.game_over()
         game_over = True
+        
+    # detect collision with tail
+    if snake.is_tail_collision():
+        game_over = True
+        scoreboard.game_over()
 
 screen.exitonclick()

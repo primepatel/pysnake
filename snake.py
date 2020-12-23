@@ -24,6 +24,12 @@ class Snake:
     def extend(self):
         self.add_segment(self.segments[-1].position())
     
+    def is_tail_collision(self):
+        for seg in self.segments[1:]:
+            if self.head.distance(seg) < 10:
+                return True
+        return False
+    
     def move(self):
         for seg_num in range(len(self.segments)-1, 0, -1):
             cords = self.segments[seg_num-1].xcor(), self.segments[seg_num-1].ycor()
