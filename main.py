@@ -1,16 +1,28 @@
-from turtle import Screen
+from turtle import Screen, Turtle
 from time import sleep
 from snake import Snake
 from food import Food
 from score import Scoreboard
 
+WIDTH, HEIGHT = 550, 550
 screen = Screen()
-screen.setup(width=600, height=600)
+screen.setup(width=WIDTH+90, height=HEIGHT+30)
 screen.bgcolor("black")
 screen.title("Snake Game")
+boxer = Turtle()
+boxer.hideturtle()
+boxer.penup()
+boxer.goto((WIDTH/2, HEIGHT/2))
+boxer.pendown()
+boxer.color("white")
+boxer.goto((WIDTH/2, -HEIGHT/2))
+boxer.goto((-WIDTH/2, -HEIGHT/2))
+boxer.goto((-WIDTH/2, HEIGHT/2))
+boxer.goto((WIDTH/2, HEIGHT/2))
+
 screen.tracer(0) # used as screen update 0: PAUSE
 snake = Snake()
-food = Food()
+food = Food(WIDTH, HEIGHT)
 scoreboard = Scoreboard()
 
 screen.listen()
@@ -23,7 +35,7 @@ game_over = False
 
 while not game_over:
     screen.update()
-    sleep(0.1)
+    sleep(0.05)
     snake.move()
     
     # detect collision with food
@@ -33,7 +45,7 @@ while not game_over:
         scoreboard.update_score()
     
     # detect collision with wall
-    if abs(snake.head.xcor()) >= 280 or abs(snake.head.ycor()) >= 280:
+    if abs(snake.head.xcor()) >= (WIDTH/2-5) or abs(snake.head.ycor()) >= (HEIGHT/2-5):
         scoreboard.game_over()
         game_over = True
         

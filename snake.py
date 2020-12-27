@@ -1,7 +1,7 @@
 from turtle import Turtle
 
-INITIAL_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
-MOVE_DISTANCE = 20
+INITIAL_POSITIONS = [(0, 0), (-20, 0), (-40, 0), (-60, 0), (-80, 0), (-100, 0)]
+MOVE_DISTANCE = 10
 UP, DOWN, LEFT, RIGHT = 90, 270, 180, 0
 
 class Snake:
@@ -26,7 +26,7 @@ class Snake:
     
     def is_tail_collision(self):
         for seg in self.segments[1:]:
-            if self.head.distance(seg) < 10:
+            if self.head.distance(seg) < 1:
                 return True
         return False
     
